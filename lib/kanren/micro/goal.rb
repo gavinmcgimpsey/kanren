@@ -1,3 +1,4 @@
+require 'kanren/micro/state.rb'
 require 'kanren/utils'
 
 module Kanren
@@ -5,6 +6,10 @@ module Kanren
     class Goal
       def initialize(&block)
         @block = block
+      end
+
+      def solve
+        pursue_in(State.new)
       end
 
       def pursue_in(state)
