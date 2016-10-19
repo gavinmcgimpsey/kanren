@@ -42,13 +42,16 @@ module Kanren
         end
       end
 
-      def self.either(first_goal, second_goal)
+      def self.any(*goals)
         new do |state|
-          first_stream = first_goal.pursue_in(state)
-          second_stream = second_goal.pursue_in(state)
+          streams = goals.map { |goal| goal.pursue_in(state) }
 
-          Utils.interleave first_stream, second_stream
+          Utils.interleave(*streams)
         end
+      end
+
+      class << self
+        alias_method :both, :any
       end
 
       def self.both(first_goal, second_goal)
