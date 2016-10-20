@@ -1,5 +1,5 @@
-require 'kanren/micro/state.rb'
-require 'kanren/utils'
+require_relative 'state'
+require_relative '../utils'
 
 module Kanren
   module Micro
@@ -55,15 +55,19 @@ module Kanren
         end
       end
 
-      class << self
-        alias_method :both, :any
-      end
-
-      def self.both(first_goal, second_goal)
+      def self.all(first_goal, *rest_goals)
         new do |state|
           states = first_goal.pursue_in(state)
-          second_goal.pursue_in_each states
+          rest_goals.each do |goal|
+            states = goal.pursue_in_each states
+          end
+          states
         end
+      end
+
+      class << self
+        alias_method :either, :any
+        alias_method :both, :all
       end
     end
   end
