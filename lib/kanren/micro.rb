@@ -1,4 +1,4 @@
-require 'kanren/micro/goal'
-require 'kanren/micro/relations'
-require 'kanren/micro/state'
-require 'kanren/micro/variable'
+require_relative 'micro/goal'
+require_relative 'micro/relations'
+require_relative 'micro/state'
+require_relative 'micro/variable'

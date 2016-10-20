@@ -1,5 +1,5 @@
-require 'kanren/micro/variable'
-require 'kanren/pair'
+require_relative 'variable'
+require_relative '../pair'
 
 module Kanren
   module Micro

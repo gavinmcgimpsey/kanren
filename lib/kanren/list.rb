@@ -1,4 +1,4 @@
-require 'kanren/pair'
+require_relative 'pair'
 
 module Kanren
   module List
